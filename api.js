@@ -1,45 +1,60 @@
 import store from './store';
 
-const BASE_URL = 'https://thinkful-list-api.herokuapp.com/reif';
+const BASE_URL = 'https://thinkful-list-api.herokuapp.com/zayar/bookmarks';
 
 const parseJson = function (response) {
   return response.json();
 };
 
 const processStatus = function (response) {// process status
-  if (response.status === 200 || response.status === 0) {
+  if (response.ok) {
     return Promise.resolve(response)
   } else {
-    return Promise.reject(new Error('Error loading: ' + url))
+    return Promise.reject(new Error(`Error loading: ${response.status}`))
   }
 };
 
 
-const getItems = function () {
-  return apiFetch(`${BASE_URL}/items`);
+const getBookmarks = function () {
+  return apiFetch(`${BASE_URL}/`);
 };
 
-const createItem = function (name) {
+const createItem = function (
+  title,
+  url,
+  description = 'Click to edit description',
+  rating = 1
+) {
   let newItem = JSON.stringify({
-    name
+    title,
+    url,
+    description,
+    rating
   });
-  return apiFetch(`${BASE_URL}/items`, {
+  return apiFetch(`${BASE_URL}`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: newItem
   });
 };
 
-const updateItem = function (id, updateData) {
-  return apiFetch(`${BASE_URL}/items/${id}`, {
+const updateBookmark = function (id, updateData) {
+  if (updateData.title && updateData.url) {
+  return apiFetch(`${BASE_URL}/${id}`, {
     method: 'PATCH',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(updateData)
   });
+  } else {
+    throw new Error('Must provide a title and URL');
+  }
 };
 
-const deleteItem = function (id) {
-  return apiFetch(`${BASE_URL}/items/${id}`, {
+const deleteBookmark = function (id) {
+  if (!id) {
+    throw new Error(`Couldn't find bookmark to delete`);
+  }
+  return apiFetch(`${BASE_URL}/${id}`, {
     method: 'DELETE',
     headers: { 'Content-Type': 'application/json' }
   });
@@ -58,23 +73,14 @@ const responseCheck = function (res) {
 const apiFetch = function (...args) {
   return fetch(...args)
     .then(resp => {
-      return responseCheck(resp);
-      // return resp;
-    })
-    .catch(error => {
-      console.log(error);
-      // document.getElementById('error-container').innerHTML = '';
-      // store.errors.error = resp;
-      // document.getElementById('error-container').innerHTML = (`Error: ${resp}`);
+      return processStatus(resp);
     });
-
-
-  // .then(resp => responseCheck(resp));
-};
+    };
 
 export default {
-  getItems,
-  createItem,
-  updateItem,
-  deleteItem
+  getBookmarks,
+  createBookmark,
+  updateBookmark,
+  deleteBookmark,
+  parseJson
 };

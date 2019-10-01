@@ -1,5 +1,5 @@
 const store = {
-  bookmarks: [
+  items: [
     {
       id: 'x56w',
       title: 'Title 1',
@@ -16,16 +16,13 @@ const store = {
       description: 'dolorum tempore deserunt',
       expanded: false
     } 
-    ...
   ],
   adding: false,
   error: null,
-  filter: 0
+  filter: null
 };
 
 const items = [];
-let errors = { error: false };
-let hideCheckeditems = false;
 
 const findById = function (id) {
   return this.items.find(currentItem => currentItem.id === id);
