@@ -1,0 +1,28 @@
+id: 'x56w',
+title: 'Title 1',
+rating: 3,
+url: 'http://www.title1.com',
+description: 'lorem ipsum dolor sit',
+expanded: false
+
+`<div class="bookmark-item">
+    <form id="${item.id}">
+        <div class="bookmark-info">
+            <h5>`${item.title}`</h5>
+            <p>`${item.description}`</p>
+            <a href="${item.url}" alt="url">${item.url}</a>
+            <div class="bookmark-rating">
+                ${ratingHtml}
+            </div>
+        </div>
+    </form>
+</div>`
+
+let rating = []
+for (let i=0; i < item.rating; i++) {
+    rating.push(`<button name="rating" type="submit" value="${i+1}"><i class="fas fa-star"></i></button>`);
+}
+while (ratingHtml.length < 5) {
+    rating.push(`<button name="rating" type="submit" value="${rating.length+1}"><i class="far fa-star"></i></button>`);
+}
+let ratingHtml = rating.join('')
