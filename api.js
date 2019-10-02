@@ -10,7 +10,7 @@ const processStatus = function (response) {// process status
   if (response.ok) {
     return Promise.resolve(response)
   } else {
-    return Promise.reject(new Error(`Error loading: ${response.status}`))
+    return Promise.reject(new Error(`API Error code: ${response.status}`))
   }
 };
 
@@ -19,7 +19,7 @@ const getBookmarks = function () {
   return apiFetch(`${BASE_URL}/`);
 };
 
-const createItem = function (
+const createBookmark = function (
   title,
   url,
   description = 'Click to edit description',

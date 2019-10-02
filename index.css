@@ -1,13 +1,48 @@
 .btn {
-    background-color: none; /* Blue background */
-    border: none; /* Remove borders */
-    color: blue; /* White text */
-    padding: 5px 5px; /* Some padding */
-    font-size: 16px; /* Set a font size */
-    cursor: pointer; /* Mouse pointer on hover */
+    background-color: none;
+    border: none;
+    color: blue;
+    padding: 5px 5px;
+    font-size: 16px;
+    cursor: pointer;
   }
   
   /* Darker background on mouse-over */
   .btn:hover {
     background-color: RoyalBlue;
+  }
+
+  .rating-label input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  
+    border-radius: 50%;
+    width: 0px;
+    height: 0px;
+  
+    border: 0px solid #999;
+    transition: 0.2s all linear;
+    margin-right: 5px;
+  
+    position: relative;
+    top: 4px;
+  }
+  
+  .rating-label input:checked {
+    border: 0px solid black;
+  }
+
+  .rating-label input:checked i {
+    size: 2rem;
+  }
+  
+  button,
+  legend {
+    color: white;
+    background-color: black;
+    padding: 5px 10px;
+    border-radius: 0;
+    border: 0;
+    font-size: 14px;
   }

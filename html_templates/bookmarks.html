@@ -2,15 +2,28 @@ id: 'x56w',
 title: 'Title 1',
 rating: 3,
 url: 'http://www.title1.com',
-description: 'lorem ipsum dolor sit',
+desc: 'lorem ipsum dolor sit',
 expanded: false
 
+
 `<div class="bookmark-item">
-    <form id="${item.id}">
+    <form id="${item.id}" class="js-expand">
         <div class="bookmark-info">
-            <h5>`${item.title}`</h5>
-            <p>`${item.description}`</p>
-            <a href="${item.url}" alt="url">${item.url}</a>
+            <h5>${item.title}</h5>
+        </div>
+        <div class="bookmark-rating">
+            ${ratingHtml}
+        </div>
+    </form>
+</div>`
+
+
+`<div class="bookmark-item">
+    <form id="${item.id}" class="js-edit">
+        <div class="bookmark-info">
+            <h5>${item.title}</h5>
+            <input class="description-edit" name="desc" type="text" placeholder="${item.desc}"
+            <p><a href="${item.url}" alt="url">Visit Site</a></p>
             <div class="bookmark-rating">
                 ${ratingHtml}
             </div>
@@ -26,3 +39,9 @@ while (ratingHtml.length < 5) {
     rating.push(`<button name="rating" type="submit" value="${rating.length+1}"><i class="far fa-star"></i></button>`);
 }
 let ratingHtml = rating.join('')
+
+if (item.expanded) {
+    bookmarkHtml
+}
+
+let bookmarkHtml = `<div class="bookmark-item">${}</div>`

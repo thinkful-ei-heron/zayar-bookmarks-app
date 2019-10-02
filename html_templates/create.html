@@ -1,16 +1,33 @@
 <form class="js-create">
     <h2>Create a bookmark</h2>
-    <fieldset class="create-fieldset">
-        <div class="title-create">
+    <fieldset>
+        <div>
             <label for="js-title">Title:</label>
-            <input id="js-title" class="js-title" name="title" type="text" placeholder="Enter Website Title" required>
+            <input id="js-title" class="js-title" name="title" type="text" placeholder="Enter Website Title..." required>
         </div>
-        <div class="url-create">
-            <label for="js-url">Title:</label>
+        <div>
+            <label for="js-url">URL:</label>
             <input id="js-url" class="js-url" name="url" type="text" placeholder="Enter URL..." required>
+        </div>
+        <div>
+            <label for="js-description">Description:</label>
+            <textarea id="js-description" class="js-description" name="desc" type="text" placeholder="Optional Description...">
+            </textarea>
+        </div>
+    </fieldset>
+    <fieldset>
+        <legend for="js-rating">Optional Rating:</legend>
+        <div>
+            <label class="rating-label"><i class="fas fa-star"></i><input type="radio" name="rating" value="1"></label>
+            <label class="rating-label"><i class="fas fa-star"></i><input type="radio" name="rating" value="2"></label>
+            <label class="rating-label"><i class="fas fa-star"></i><input type="radio" name="rating" value="3"></label>
+            <label class="rating-label"><i class="fas fa-star"></i><input type="radio" name="rating" value="4"></label>
+            <label class="rating-label"><i class="fas fa-star"></i><input type="radio" name="rating" value="5"></label>
         </div>
     </fieldset>
     <button class="js-create-submit" type="submit">Create</button>
     <button class="js-create-reset" type="reset">Reset</button>
-    <button class="js-create-cancel" type="reset">Cancel</button>
+    <button class="js-create-cancel" type="button">Cancel</button>
 </form>
+
+$('.app') handles js-create 
