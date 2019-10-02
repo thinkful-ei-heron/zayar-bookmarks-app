@@ -38,6 +38,9 @@ const createBookmark = function (
   })
     .then(resp => {
       return parseJson(resp);
+    })
+    .catch(err => {
+      throw err;
     });
 };
 
