@@ -6,7 +6,7 @@ const parseJson = function (response) {
   return response.json();
 };
 
-const processStatus = function (response) {// process status
+const processStatus = function (response) {
   if (response.ok) {
     return Promise.resolve(response)
   } else {
@@ -22,20 +22,23 @@ const getBookmarks = function () {
 const createBookmark = function (
   title,
   url,
-  description = 'Click to edit description',
+  desc = 'Click to edit description',
   rating = 1
 ) {
   let newItem = JSON.stringify({
     title,
     url,
-    description,
+    desc,
     rating
   });
   return apiFetch(`${BASE_URL}`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: newItem
-  });
+  })
+    .then(resp => {
+      return parseJson(resp);
+    });
 };
 
 const updateBookmark = function (id, updateData) {
