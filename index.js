@@ -1,9 +1,10 @@
 import bookmarks from './bookmarks.js'
 
 const startApp = function () {
-    bookmarks.syncApi();
+    bookmarks.syncApi().then(() => {
+        bookmarks.render();
+    });
     bookmarks.handleEvents();
-    bookmarks.render();
 }
 
 $(startApp)

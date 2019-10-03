@@ -5,31 +5,31 @@ url: 'http://www.title1.com',
 desc: 'lorem ipsum dolor sit',
 expanded: false
 
-
-`<div class="bookmark-item">
-    <form id="${item.id}" class="js-expand">
-        <div class="bookmark-info">
-            <h5>${item.title}</h5>
+if !item.expanded
+`<li data-id="${item.id}" class="bookmark-item">
+    <form class="js-edit">
+        <div class="bookmark-minimized">
+            <button type="button" class="title-minimized">${item.title}</button>
         </div>
-        <div class="bookmark-rating">
+        <div class="bookmark-rating-minimized">
             ${ratingHtml}
         </div>
     </form>
-</div>`
+</li>`
 
-
-`<div class="bookmark-item">
-    <form id="${item.id}" class="js-edit">
-        <div class="bookmark-info">
+if item.expanded
+`<li data-id="${item.id}" class="bookmark-item">
+    <form class="js-edit">
+        <div class="bookmark-expanded">
             <h5>${item.title}</h5>
-            <input class="description-edit" name="desc" type="text" placeholder="${item.desc}"
+            <input class="description-edit" name="desc" type="text" placeholder="${item.desc}">
             <p><a href="${item.url}" alt="url">Visit Site</a></p>
             <div class="bookmark-rating">
                 ${ratingHtml}
             </div>
         </div>
     </form>
-</div>`
+</li>`
 
 let rating = []
 for (let i=0; i < item.rating; i++) {

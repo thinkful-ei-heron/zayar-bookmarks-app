@@ -1,4 +1,4 @@
-import store from './store';
+import store from './store.js';
 
 const BASE_URL = 'https://thinkful-list-api.herokuapp.com/zayar/bookmarks';
 
@@ -8,7 +8,7 @@ const parseJson = function (response) {
 
 const processStatus = function (response) {
   if (response.ok) {
-    return Promise.resolve(response)
+    return response;
   } else {
     return Promise.reject(new Error(`API Error code: ${response.status}`))
   }
@@ -16,31 +16,19 @@ const processStatus = function (response) {
 
 
 const getBookmarks = function () {
-  return apiFetch(`${BASE_URL}/`);
+  return apiFetch(`${BASE_URL}/`)
+    .then(response => parseJson(response));
 };
 
-const createBookmark = function (
-  title,
-  url,
-  desc = 'Click to edit description',
-  rating = 1
-) {
-  let newItem = JSON.stringify({
-    title,
-    url,
-    desc,
-    rating
-  });
+const createBookmark = function (formdata) {
   return apiFetch(`${BASE_URL}`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: newItem
+    body: JSON.stringify(formdata)
   })
-    .then(resp => {
-      return parseJson(resp);
-    })
+    .then(resp => parseJson(resp))
     .catch(err => {
-      throw err;
+      return Promise.reject(Error(err));
     });
 };
 
@@ -66,21 +54,10 @@ const deleteBookmark = function (id) {
   });
 };
 
-const responseCheck = function (res) {
-  if (!res.ok) {
-    store.errors.error = res.status;
-    document.getElementById('error-container').innerHTML = (`Error: ${store.errors.error}`);
-    return Promise.reject(`Error code: ${store.errors.error}`);
-  }
-  document.getElementById('error-container').innerHTML = '';
-  return res;
-};
 
 const apiFetch = function (...args) {
   return fetch(...args)
-    .then(resp => {
-      return processStatus(resp);
-    });
+    .then(resp => processStatus(resp));
     };
 
 export default {
@@ -88,5 +65,5 @@ export default {
   createBookmark,
   updateBookmark,
   deleteBookmark,
-  parseJson
+  apiFetch
 };

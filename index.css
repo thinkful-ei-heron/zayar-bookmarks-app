@@ -1,15 +1,73 @@
+main {
+  color: white;
+  background-color: dimgrey;
+}
+
+.bookmarks {
+  justify-self: center;
+  text-justify: center;
+}
+
+main h2 {
+  justify-self: center;
+  margin-left: 3em;
+}
+
 .btn {
     background-color: none;
     border: none;
-    color: blue;
+    color: white;
     padding: 5px 5px;
     font-size: 16px;
     cursor: pointer;
   }
+
+  ul {
+    display: flex;
+    width: 80%;
+    flex-direction: column;
+    justify-items: space-evenly;
+    list-style: none;
+  }
+
+  .app-top {
+    display: flex;
+    justify-content: center;
+  }
+
+  a {
+    font-style: normal;
+    color: aliceblue;
+  }
+
+  .menu {
+    display: flex;
+    justify-content: center;
+  }
+
+  ul li {
+    padding: 1rem;
+    border: solid;
+    border-radius: 2px;
+    background: black;
+    border-bottom-color: white;
+  }
+
+  .js-edit {
+
+  }
+
+h3 {
+  color: white;
+}
   
   /* Darker background on mouse-over */
   .btn:hover {
-    background-color: RoyalBlue;
+    background-color: transparent;
+    transition: 0.2s all linear;
+    border: 2px;
+    border-radius: 4px;
+    color: aliceblue;
   }
 
   .rating-label input {
@@ -23,18 +81,18 @@
   
     border: 0px solid #999;
     transition: 0.2s all linear;
-    margin-right: 5px;
+    margin-right: 2px;
   
     position: relative;
     top: 4px;
   }
   
   .rating-label input:checked {
-    border: 0px solid black;
+    border: 4px solid black;
   }
 
-  .rating-label input:checked i {
-    size: 2rem;
+  .rating-label i {
+    size: 1rem;
   }
   
   button,

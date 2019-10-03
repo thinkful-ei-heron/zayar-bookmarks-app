@@ -1,3 +1,5 @@
+import bookmarks from './bookmarks.js'
+
 const store = {
   items: [
     {
@@ -21,19 +23,25 @@ const store = {
   error: null,
   filter: null
 };
-
 const items = [];
+let adding = false;
+let error = null;
+let filter = null;
 
 const findById = function (id) {
   return this.items.find(currentItem => currentItem.id === id);
 };
 
 const addItem = function (item) {
-  if (item.name) {
-    console.log(item);
-    this.items.push(item);
+  console.log(item);
+  if (item.title) {
+    let newitem = {};
+    Object.assign(newitem, item);
+    newitem.expanded = false;
+    this.items.push(newitem);
+    bookmarks.render();
   } else {
-    throw new Error(item.message)
+    throw new Error('Not a valid item');
   }
 };
 
@@ -46,17 +54,28 @@ const findAndDelete = function (id) {
   this.items = this.items.filter(currentItem => currentItem.id !== id);
 };
 
-const toggleCheckedFilter = function () {
-  this.hideCheckedItems = !this.hideCheckedItems;
+const setRatingFilter = function (rating=null) {
+  this.filter = rating;
 };
+
+const toggleAdding = function () {
+  this.adding = !this.adding;
+}
+
+const setError = function (error = null) {
+  this.error = error;
+}
 
 export default {
   items,
-  hideCheckeditems,
+  adding,
+  error,
+  filter,
   findById,
   addItem,
   findAndUpdate,
   findAndDelete,
-  toggleCheckedFilter,
-  errors
+  setRatingFilter,
+  toggleAdding,
+  setError
 };
