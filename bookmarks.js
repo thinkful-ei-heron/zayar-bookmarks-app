@@ -173,11 +173,11 @@ const generateCreateHtml = function () {
                 <fieldset>
                     <legend for="js-rating">Optional Rating:</legend>
                     <div>
-                        <label class="rating-label"><button type="button" class="btn"><i class="fas fa-star"></i><input type="radio" name="rating" value="1"></button></label>
-                        <label class="rating-label"><button type="button" class="btn"><i class="fas fa-star"></i><input type="radio" name="rating" value="2"></button></label>
-                        <label class="rating-label"><button type="button" class="btn"><i class="fas fa-star"></i><input type="radio" name="rating" value="3"></button></label>
-                        <label class="rating-label"><button type="button" class="btn"><i class="fas fa-star"></i><input type="radio" name="rating" value="4"></button></label>
-                        <label class="rating-label"><button type="button" class="btn"><i class="fas fa-star"></i><input type="radio" name="rating" value="5"></button></label>
+                        <label class="rating-label"><i class="fas fa-star"></i><input type="radio" name="rating" value="1"></label>
+                        <label class="rating-label"><i class="fas fa-star"></i><input type="radio" name="rating" value="2"></label>
+                        <label class="rating-label"><i class="fas fa-star"></i><input type="radio" name="rating" value="3"></label>
+                        <label class="rating-label"><i class="fas fa-star"></i><input type="radio" name="rating" value="4"></label>
+                        <label class="rating-label"><i class="fas fa-star"></i><input type="radio" name="rating" value="5"></label>
                     </div>
                 </fieldset>
                 <button class="js-create-submit btn" type="submit">Create</button>
@@ -247,7 +247,6 @@ const generateMenuHtml = function () {
                     <option value="4">4</option>
                     <option value="5">5</option>
                 </select>
-                
             </form>`
 }
 

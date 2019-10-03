@@ -91,6 +91,10 @@ h3 {
     border: 4px solid black;
   }
 
+  .rating-label input:checked i {
+    size: 2rem;
+  }
+
   .rating-label i {
     size: 1rem;
   }
